@@ -15,13 +15,14 @@ import java.util.Collection;
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private String nom;
     private String prenom;
     private String email;
     private String telephone;
     private String motDePasse;
+
     @OneToMany(mappedBy = "account",fetch = FetchType.LAZY)
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Collection<Portfolio> portfolios;
 }

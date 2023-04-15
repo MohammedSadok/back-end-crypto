@@ -2,17 +2,23 @@ package com.crypto.backendcrypto.entitys;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Collection;
 
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Coin {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     String nom;
     String symbole;
     String icon;
     @OneToMany (mappedBy = "coin")
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     Collection <Transaction> transactions;
 }

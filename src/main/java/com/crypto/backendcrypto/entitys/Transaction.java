@@ -15,14 +15,14 @@ import java.util.Date;
 @NoArgsConstructor
 public class Transaction {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     @Enumerated(EnumType.STRING)
     private TypeTransaction type;
     private float quantite;
     private float price;
     private Date data;
     @ManyToOne
-    //@JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Portfolio portfolio;
     @ManyToOne
     //@JsonProperty(access = JsonProperty.Access.READ_ONLY)

@@ -12,12 +12,13 @@ import java.util.Collection;
 @Data @AllArgsConstructor @NoArgsConstructor
 public class Portfolio {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private String nom;
+
     @ManyToOne
-    // @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Account account;
+
     @OneToMany(mappedBy = "portfolio",fetch = FetchType.LAZY)
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Collection <Transaction> transactions;
 }
