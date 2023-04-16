@@ -24,8 +24,6 @@ public class Transaction {
     @ManyToOne
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Portfolio portfolio;
-    @ManyToOne
-    //@JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private Coin coin;
+    private String symbol;
 
 }

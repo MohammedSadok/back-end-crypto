@@ -1,8 +1,10 @@
 package com.crypto.backendcrypto.controllers;
 
 import com.crypto.backendcrypto.entitys.Account;
+import com.crypto.backendcrypto.entitys.Portfolio;
 import com.crypto.backendcrypto.service.AccountService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,5 +21,10 @@ public class AccountController {
     @GetMapping ("/accounts")
     public List<Account> accountList(){
         return accountService.findAllAccounts();
+    }
+    @ResponseBody
+    @GetMapping ("/account-portfolios")
+    public List<Portfolio> accountPortfolios(@RequestParam Long id){
+        return accountService.findAccountPortfolios(id);
     }
 }

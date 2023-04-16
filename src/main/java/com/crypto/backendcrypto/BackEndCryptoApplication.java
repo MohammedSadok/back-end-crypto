@@ -16,11 +16,11 @@ public class BackEndCryptoApplication {
         SpringApplication.run(BackEndCryptoApplication.class, args);
     }
 
-    @Bean
-    CommandLineRunner commandLineRunner(AccountService accountService, PortfolioService portfolioService) {
-        return args -> {
-            Account account = accountService.saveAccount(new Account(null, "sadom", "mohammed", "mohammed.sadok@gmail.com", "0771674164", "123456",null));
-            portfolioService.savePortfolio(new Portfolio(null,"portfolio1",account,null));
-        };
-    }
+//    @Bean
+//    CommandLineRunner commandLineRunner(AccountService accountService, PortfolioService portfolioService) {
+//        return args -> {
+//            Account account = accountService.saveAccount(new Account(null, "sadom", "mohammed", "mohammed.sadok@gmail.com", "0771674164", "123456",null));
+//            portfolioService.savePortfolio(new Portfolio(null,"portfolio1",account,null));
+//        };
+//    }
 }

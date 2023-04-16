@@ -16,9 +16,9 @@ public class Portfolio {
     private String nom;
 
     @ManyToOne
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Account account;
 
     @OneToMany(mappedBy = "portfolio",fetch = FetchType.LAZY)
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Collection <Transaction> transactions;
 }

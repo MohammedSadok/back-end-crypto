@@ -3,16 +3,19 @@ package com.crypto.backendcrypto.service;
 import com.crypto.backendcrypto.entitys.Account;
 import com.crypto.backendcrypto.entitys.Portfolio;
 import com.crypto.backendcrypto.repositories.AccountRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
+@Transactional
 @Service
-public class AccountServiceImp implements AccountService{
+public class AccountServiceImp implements AccountService {
+    AccountRepository accountRepository;
+
     public AccountServiceImp(AccountRepository accountRepository) {
         this.accountRepository = accountRepository;
     }
-
-    AccountRepository accountRepository;
 
     @Override
     public Account saveAccount(Account account) {
@@ -31,7 +34,12 @@ public class AccountServiceImp implements AccountService{
 
     @Override
     public Account deleteAccount(Account account) {
-        return null;
+        if (accountRepository.existsById(account.getId())) {
+            accountRepository.delete(account);
+            return account;
+        } else {
+            return null;
+        }
     }
 
     @Override
@@ -40,7 +48,7 @@ public class AccountServiceImp implements AccountService{
     }
 
     @Override
-    public List<Portfolio> findAccountPortfolios(Account account) {
-        return null;
+    public List<Portfolio> findAccountPortfolios(Long id) {
+        return accountRepository.findAccountPortfolios(id);
     }
 }
