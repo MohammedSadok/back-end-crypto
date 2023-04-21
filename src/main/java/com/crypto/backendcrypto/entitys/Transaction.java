@@ -20,7 +20,7 @@ public class Transaction {
     private TypeTransaction type;
     private float quantite;
     private float price;
-    private Date data;
+    private String date;
     @ManyToOne
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Portfolio portfolio;

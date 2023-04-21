@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface PortfolioRepository extends JpaRepository<Portfolio, Long> {
-    @Query("select t from Transaction t where t.portfolio.id = :id")
-    List<Transaction> findPortfolioTransactions(@Param("id") Long id);
+
+    @Query("select p from Portfolio p where p.account.id = :id")
+    List<Portfolio> findAccountPortfolios(@Param("id")Long id);
 }

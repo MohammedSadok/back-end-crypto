@@ -1,7 +1,6 @@
 package com.crypto.backendcrypto.service;
 
 import com.crypto.backendcrypto.entitys.Account;
-import com.crypto.backendcrypto.entitys.Portfolio;
 import com.crypto.backendcrypto.repositories.AccountRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
@@ -19,6 +18,8 @@ public class AccountServiceImp implements AccountService {
 
     @Override
     public Account saveAccount(Account account) {
+        if (accountRepository.findAccountByEmail(account.getEmail()).orElse(null) != null)
+            return null;
         return accountRepository.save(account);
     }
 
@@ -44,11 +45,12 @@ public class AccountServiceImp implements AccountService {
 
     @Override
     public Account updateAccount(Account account) {
-        return null;
+        if (accountRepository.existsById(account.getId())) {
+            accountRepository.update(account.getId(), account.getNom(), account.getPrenom(), account.getEmail(), account.getTelephone(), account.getMotDePasse());
+            return account;
+        } else {
+            return null;
+        }
     }
 
-    @Override
-    public List<Portfolio> findAccountPortfolios(Long id) {
-        return accountRepository.findAccountPortfolios(id);
-    }
 }

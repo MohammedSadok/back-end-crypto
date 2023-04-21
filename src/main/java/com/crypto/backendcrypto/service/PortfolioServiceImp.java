@@ -27,10 +27,7 @@ public class PortfolioServiceImp implements PortfolioService{
         return portfolioRepository.findById(id).orElse(null);
     }
 
-    @Override
-    public List<Portfolio> findAllPortfolios() {
-        return portfolioRepository.findAll();
-    }
+
 
     @Override
     public Portfolio deletePortfolio(Long id) {
@@ -46,7 +43,7 @@ public class PortfolioServiceImp implements PortfolioService{
     }
 
     @Override
-    public List<Transaction> findPortfolioTransactions(Long id) {
-        return portfolioRepository.findPortfolioTransactions(id);
+    public List<Portfolio> findAccountPortfolios(Long id) {
+        return portfolioRepository.findAccountPortfolios(id);
     }
 }

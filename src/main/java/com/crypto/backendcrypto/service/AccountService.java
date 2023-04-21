@@ -11,5 +11,4 @@ public interface AccountService {
     public Account findAccountById(Long id);
     public Account deleteAccount(Account account);
     public Account updateAccount (Account account);
-    public List<Portfolio> findAccountPortfolios (Long id);
 }
