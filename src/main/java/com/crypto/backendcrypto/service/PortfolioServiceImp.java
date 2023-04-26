@@ -4,7 +4,7 @@ import com.crypto.backendcrypto.entitys.Portfolio;
 import com.crypto.backendcrypto.entitys.Transaction;
 import com.crypto.backendcrypto.repositories.PortfolioRepository;
 import com.crypto.backendcrypto.repositories.TransactionRepository;
-import jakarta.transaction.Transactional;
+import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -8,6 +8,12 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import java.util.ArrayList;
 
 @SpringBootApplication
 public class BackEndCryptoApplication {
@@ -23,4 +29,45 @@ public class BackEndCryptoApplication {
 //            portfolioService.savePortfolio(new Portfolio(null,"portfolio1",account,null));
 //        };
 //    }
+
+
+    @Bean
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    CommandLineRunner run(AccountService accountService){
+        return args -> {
+          // accountService.saveAccount(new Account(null, "test", "test", "test@gmail.com", "0771674164", "admin",null));
+        };
+    }
+
+    private static final String GET = "GET";
+    private static final String POST = "POST";
+    private static final String PUT = "PUT";
+    private static final String DELETE = "DELETE";
+
+
+
+
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/**")
+                        .allowedMethods(GET, POST, PUT, DELETE)
+                        .allowedHeaders("*")
+                        .allowedOriginPatterns("*")
+                        .allowCredentials(true);
+
+            }
+        };
+    }
+
+
+
+
+
 }

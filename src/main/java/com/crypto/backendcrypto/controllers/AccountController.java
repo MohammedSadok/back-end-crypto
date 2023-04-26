@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 public class AccountController {
@@ -59,6 +60,14 @@ public class AccountController {
     public ResponseEntity<?> findAccount(@PathVariable Long id){
         Account account = accountService.findAccountById(id);
         return getResponseEntity(account);
+
+    }
+
+    @ResponseBody
+    @GetMapping ("/account/email={email}")
+    public Optional<Account> findAccountByEmail(@PathVariable String email){
+        Optional<Account> account = accountService.findAccountByEmail(email);
+        return account;
 
     }
 }

@@ -1,7 +1,7 @@
 package com.crypto.backendcrypto.entitys;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,6 +24,5 @@ public class Account {
     private String motDePasse;
 
     @OneToMany(mappedBy = "account",fetch = FetchType.LAZY)
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Collection<Portfolio> portfolios;
 }
